@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_syp_rate_provider_admin,syp.rate.provider admin,model_syp_rate_provider,base.group_system,1,1,1,1
+access_syp_rate_provider_manager,syp.rate.provider manager,model_syp_rate_provider,account.group_account_manager,1,0,0,0
+access_syp_rate_update_wizard_admin,syp.rate.update.wizard admin,model_syp_rate_update_wizard,base.group_system,1,1,1,1
+access_syp_rate_update_wizard_manager,syp.rate.update.wizard manager,model_syp_rate_update_wizard,account.group_account_manager,1,1,1,1

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_currency_rate_form_syp">
+        <field name="name">res.currency.rate.form.syp</field>
+        <field name="model">res.currency.rate</field>
+        <field name="inherit_id" ref="base.view_currency_rate_form" />
+        <field name="arch" type="xml">
+            <field name="inverse_company_rate" position="after">
+                <field name="syp_buy_rate" digits="[12,6]" invisible="not syp_provider_id" />
+                <field name="syp_sell_rate" digits="[12,6]" invisible="not syp_provider_id" />
+                <field name="syp_provider_id" readonly="1" invisible="not syp_provider_id" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_currency_rate_list_syp">
+        <field name="name">res.currency.rate.list.syp</field>
+        <field name="model">res.currency.rate</field>
+        <field name="inherit_id" ref="base.view_currency_rate_tree" />
+        <field name="arch" type="xml">
+            <field name="rate" position="after">
+                <field name="syp_buy_rate" digits="[12,6]" optional="hide" />
+                <field name="syp_sell_rate" digits="[12,6]" optional="hide" />
+                <field name="syp_provider_id" optional="hide" readonly="1" />
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -26,15 +26,37 @@
  2. Restart Odoo, update the apps list, and install **SPT**.
 
  ## Configuration
- 1. Go to **Accounting → Configuration → Syrian Rate Providers** and create a provider.
- 2. Set the service (**SP Today**), the city, the API key (administrators only), the price side, the scale and the update interval.
- 3. Save. Rates are then updated by the scheduled action, or right away with **Update Rates Now**.
+  1. Go to **Invoicing / Accounting → Configuration → Syrian Rate Providers** and create a provider.
+  2. Set the service (**SP Today**), the city, the API key (administrators only), the price side, the scale and the update interval.
+  3. Save. Rates are then updated by the scheduled action, or right away with **Update Rates Now**.
 
- ## Usage
- - Rates appear in **Accounting → Configuration → Currencies → SYP → Rates**.
- - SP Today serves a live snapshot only. Each update stores the latest market rate, dated by the provider's last update time in Damascus.
-   Past dates cannot be backfilled
+  ![Provider form](spt/docs/provider_form.png)
 
+  All providers are listed with their price side, scale, schedule and remaining API quota:
+
+  ![Provider list](spt/docs/provider_list.png)
+
+  Archived providers can be found with the **Archived** filter:
+
+  ![Provider search filters](spt/docs/provider_search.png)
+
+  ## Usage
+  ### Automatic updates
+  The scheduled action **Syrian Currency Rates: daily update** runs every day. It updates each provider whose next update date has been reached.
+
+  ![Scheduled action](spt/docs/scheduled_action.png)
+
+  ### Manual updates
+  To update several providers at once, select them in the provider list and run **Actions → Update Syrian Rates**.
+  Each run calls the provider API once, and that call counts against the provider's quota.
+
+  ![Update wizard](spt/docs/update_wizard.png)
+
+  ### Rates
+  Rates appear under **Configuration → Currencies → SYP → Rates**.
+
+  ![SYP rates](spt/docs/syp_rates.png)
+  
  ## Author
  Yaser Akhras ([yaserakhras.com](https://yaserakhras.com))
 

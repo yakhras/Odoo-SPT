@@ -75,6 +75,8 @@ class TestScheduler(SptCommon):
     def test_cron_trigger(self):
         self.clear_fetch_cache()
         with self.mock_get() as get:
-            self.env.ref("spt.ir_cron_syp_rate_daily").method_direct_trigger()
+            # Since 19.0 method_direct_trigger runs the job in its own transaction, which
+            # can't see this test's records: run the cron's server action here instead.
+            self.env.ref("spt.ir_cron_syp_rate_daily").ir_actions_server_id.run()
         self.assertEqual(get.call_count, 1)
         self.assertTrue(self._rate(self.company_a))

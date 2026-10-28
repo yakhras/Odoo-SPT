@@ -81,7 +81,7 @@ class SptCommon(TransactionCase):
             "login": login,
             "company_id": company_ids[0][2][0],
             "company_ids": company_ids,
-            "groups_id": [(6, 0, [cls.env.ref(g).id for g in groups])],
+            "group_ids": [(6, 0, [cls.env.ref(g).id for g in groups])],
         })
 
     def setUp(self):

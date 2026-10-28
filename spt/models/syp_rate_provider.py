@@ -95,18 +95,14 @@ class SypRateProvider(models.Model):
     )
     daily = fields.Boolean(compute="_compute_daily", store=True)
 
-    _sql_constraints = [
-        (
-            "service_company_id_uniq",
-            "UNIQUE(service, company_id)",
-            "This provider has already been setup in this company.",
-        ),
-        (
-            "valid_interval_number",
-            "CHECK(interval_number > 0)",
-            "Scheduled update interval must be strictly positive.",
-        ),
-    ]
+    _service_company_id_uniq = models.Constraint(
+        "UNIQUE(service, company_id)",
+        "This provider has already been setup in this company.",
+    )
+    _valid_interval_number = models.Constraint(
+        "CHECK(interval_number > 0)",
+        "Scheduled update interval must be strictly positive.",
+    )
 
     @api.depends("service")
     def _compute_name(self):

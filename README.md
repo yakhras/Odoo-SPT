@@ -10,7 +10,9 @@
  - Choice of price side: **Buy**, **Sell** or **Mid (average)**. Buy and sell are stored on the rate as well.
  - Old / new Syrian pound scale (new = old ÷ 100), converted automatically
  - Scheduled updates at a configurable interval (days / weeks / months)
- - Manual update: an **Update Rates Now** button, plus a wizard for a date range
+ - Manual update: an **Update Rates Now** button, plus a wizard to update several providers at once.
+   SP Today only serves today's rates, so past dates can't be backfilled: the wizard's date fields
+   only matter for providers that offer history
  - Shows the remaining API quota (monthly limit, remaining requests, reset date)
  - Coexists with other currency rate providers without conflicts
 

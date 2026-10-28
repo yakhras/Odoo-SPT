@@ -2,7 +2,7 @@
 
 {
     "name": "SPT",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.0.1",
     "author": "Yaser Akhras",
     "maintainers": ["yakhras"],
     "website": "https://yaserakhras.com",

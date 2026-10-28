@@ -77,8 +77,10 @@ class TestSecurity(SptCommon):
         self.assertNotIn("test-key", "\n".join(logs.output))
         for message in self.provider_a.message_ids:
             self.assertNotIn("test-key", message.body or "")
-        for value in self.provider_a.message_ids.tracking_value_ids.mapped("new_value_char"):
-            self.assertNotIn("test-key", value or "")
+        # Odoo 20 moved tracking values to the mail_tracking module (not a dependency).
+        if "tracking_value_ids" in self.env["mail.message"]._fields:
+            for value in self.provider_a.message_ids.tracking_value_ids.mapped("new_value_char"):
+                self.assertNotIn("test-key", value or "")
 
     def test_api_key_not_copied(self):
         company = self.env["res.company"].create({"name": "SYP Test C", "currency_id": self.usd.id})

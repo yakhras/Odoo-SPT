@@ -4,7 +4,7 @@
     "name": "SPT",
     "version": "18.0.1.0.0",
     "author": "Yaser Akhras",
-    "maintainers": "Yaser Akhras",
+    "maintainers": ["yakhras"],
     "website": "https://yaserakhras.com",
     "license": "LGPL-3",
     "category": "Financial Management/Configuration",

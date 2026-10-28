@@ -1,5 +1,7 @@
 # Odoo-SPT
 
+[![tests](https://github.com/yakhras/Odoo-SPT/actions/workflows/tests.yml/badge.svg?branch=18.0)](https://github.com/yakhras/Odoo-SPT/actions/workflows/tests.yml)
+
  Odoo API integration that keeps **Syrian Pound (SYP)** exchange rates up to date from Syrian
  market rate providers. The supported provider in this module is **[SP Today](https://sp-today.com)**,
  and the design is extensible to other sources.
@@ -17,7 +19,7 @@
  - Coexists with other currency rate providers without conflicts
 
  ## Requirements
- - Odoo (one branch per version, e.g. `18.0`)
+ - Odoo 18.0 (this branch; 19.0 and 20.0 have their own branches)
  - Odoo modules: `account`, `mail`
  - Python: `requests`, `pytz`
  - An SP Today API key

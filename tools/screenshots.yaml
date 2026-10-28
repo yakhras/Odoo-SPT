@@ -1,0 +1,52 @@
+# Screenshot spec for C:\Odoo\scripts\odoo_shots.py (syntax in that file's docstring).
+# Captions live on the site page (front matter `screens`), not here.
+module: spt
+viewport: [1440, 900]
+shots:
+  - name: provider_list
+    open: /odoo/action-spt.action_syp_rate_provider
+    wait: .o_list_table .o_data_row
+    marks: ["th[data-name='price_side']", "th[data-name='update_schedule']",
+            "th[data-name='sptoday_quota_remaining']"]
+    covers: [spt.action_syp_rate_provider, spt.syp_rate_provider_list_view, spt.syp_rate_provider_search_view,
+             spt.menu_syp_rate_provider]
+
+  - name: provider_form
+    open: /odoo/action-spt.action_syp_rate_provider
+    wait: .o_list_table .o_data_row
+    steps:
+      - click: ".o_data_row:has-text('Mid') td[name='price_side']"
+      - wait: .o_form_view .o_form_sheet
+    marks: [".o_field_widget[name='price_side']", ".o_field_widget[name='interval_number']",
+            ".o_field_widget[name='sptoday_quota_remaining']", ".o_form_view button:has-text('Update Rates Now')"]
+    covers: [spt.syp_rate_provider_form_view]
+
+  - name: update_wizard
+    open: /odoo/action-spt.action_syp_rate_provider
+    wait: .o_list_table .o_data_row
+    steps:
+      - click: ".o_data_row:has-text('Mid') td[name='price_side']"
+      - wait: .o_form_view .o_form_sheet
+      - click: ".o_form_view button:has-text('Update Rates Now')"
+      - wait: .modal .o_form_view
+    marks: [".modal .o_field_widget[name='date_from']", ".modal .o_field_widget[name='provider_ids']",
+            ".modal footer .btn-primary"]
+    covers: [spt.syp_rate_update_wizard_form, spt.syp_rate_update_wizard_action]
+
+  - name: syp_rates
+    open: /odoo/action-base.action_currency_form/{ref:base.SYP}/action-base.act_view_currency_rates
+    wait: .o_list_table .o_data_row
+    steps:            # SYP's rates; show the module's columns (optional, hidden by default)
+      - click: .o_optional_columns_dropdown_toggle
+      - click: ".o-dropdown--menu .dropdown-item:has-text('Market Buy Rate') input"
+      - click: ".o-dropdown--menu .dropdown-item:has-text('Market Sell Rate') input"
+      - click: ".o-dropdown--menu .dropdown-item:has-text('Syrian Rate Provider') input"
+      - press: Escape
+    marks: ["th[data-name='company_rate']", "th[data-name='syp_buy_rate']", "th[data-name='syp_provider_id']"]
+    covers: [spt.view_currency_rate_list_syp]
+
+  - name: syp_rate
+    open: /odoo/action-base.action_currency_form/{ref:base.SYP}/action-base.act_view_currency_rates/{ref:spt_demo.latest_syp_rate}
+    wait: .o_form_view .o_form_sheet
+    marks: [".o_field_widget[name='syp_buy_rate']", ".o_field_widget[name='syp_provider_id']"]
+    covers: [spt.view_currency_rate_form_syp]
